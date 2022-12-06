@@ -1,0 +1,79 @@
+﻿@{
+    ViewData["Title"] = "Teacher Page";
+}
+
+<body>
+    <main class="d-flex flex-nowrap" style=" min-height: 80vh">
+        <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#RoleViews/Student"></use></svg>
+                <span class="fs-4">Teacher</span>
+            </a>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item">
+                    <a asp-controller="Pfe" asp-action="Teacher" class="nav-link active " aria-current="page">
+                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#RoleViews/Student"></use></svg>
+                        About Me
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Pfe" asp-action="Domaines" class="nav-link link-dark">
+                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+                        My Domaines
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Pfe" asp-action="ProjectsList" class="nav-link link-dark">
+                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
+                        Projects List
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Pfe" asp-action="AcceptedProjects" class="nav-link link-dark">
+                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
+                        Accepted Projects
+                    </a>
+                </li>
+
+            </ul>
+            <hr>
+            <div class="dropdown">
+                <form id="logoutForm" class="form-inline" action="/Identity/Account/Logout?returnUrl=%2F" method="post">
+                    <button id="logout" type="submit" class="nav-link btn btn-link text-dark">
+                        <strong>Sign Out</strong>
+                    </button>
+                    <input name="__RequestVerificationToken" type="hidden" value="CfDJ8Mp5Uk-tgNJOsihK5PBikfZ84w5IEaFOkLWFTtRrmZsGHy8g6qUf_OCy7pqJtX7KjGzjP1hGgoSuzm_x-c5v2K-kChv_id4cJi-odZ1i75Kn4KQKZsu0ulCeAs-1ipKFkddMdwk1_G9EmnyUUbXUfNeQTqg7iDXxA6bjh7aQyOrUprOKRuZXfBaJLCttRr8N3Q">
+                </form>
+
+            </div>
+
+        </div>
+        <div style="min-width: 80vh">
+            <div>
+                <div class="alert alert-primary" role="alert">
+                    Teacher Full Name
+                </div>
+                <p>@ViewBag.FullName</p>
+            </div>
+            <div>
+                <div class="alert alert-primary" role="alert">
+                    Email
+                </div>
+                <p>@ViewBag.Email</p>
+            </div>
+            @*<div>
+                <div class="alert alert-primary" role="alert">
+                    Description
+                </div>
+                <p>@ViewBag.ProjectDescription</p>
+            </div>
+            <div>
+                <div class="alert alert-primary" role="alert">
+                    Domaine
+                </div>
+                <p>@ViewBag.ProjectDomaine</p>
+            </div>*@
+        </div>
+    </main>
+</body>

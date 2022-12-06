@@ -1,0 +1,89 @@
+﻿@model ASP.NETCoreIdentityCustom.Models.TeacherDomaineViewModel
+@{
+    ViewData["Title"] = "Teacher Page";
+}
+
+<body>
+    <main class="d-flex flex-nowrap" style=" min-height: 80vh">
+        <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#RoleViews/Student"></use></svg>
+                <span class="fs-4">Teacher</span>
+            </a>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item">
+                    <a asp-controller="Pfe" asp-action="Teacher" class="nav-link link-dark " aria-current="page">
+                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#RoleViews/Student"></use></svg>
+                        About Me
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Pfe" asp-action="Domaines" class="nav-link active ">
+                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+                        My Domaines
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Pfe" asp-action="ProjectsList" class="nav-link link-dark">
+                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
+                        Projects List
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Pfe" asp-action="AcceptedProjects" class="nav-link link-dark">
+                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
+                        Accepted Projects
+                    </a>
+                </li>
+
+            </ul>
+            <hr>
+            <div class="dropdown">
+                <form id="logoutForm" class="form-inline" action="/Identity/Account/Logout?returnUrl=%2F" method="post">
+                    <button id="logout" type="submit" class="nav-link btn btn-link text-dark">
+                        <strong>Sign Out</strong>
+                    </button>
+                    <input name="__RequestVerificationToken" type="hidden" value="CfDJ8Mp5Uk-tgNJOsihK5PBikfZ84w5IEaFOkLWFTtRrmZsGHy8g6qUf_OCy7pqJtX7KjGzjP1hGgoSuzm_x-c5v2K-kChv_id4cJi-odZ1i75Kn4KQKZsu0ulCeAs-1ipKFkddMdwk1_G9EmnyUUbXUfNeQTqg7iDXxA6bjh7aQyOrUprOKRuZXfBaJLCttRr8N3Q">
+                </form>
+
+            </div>
+
+        </div>
+        <div style="min-width: 80vh">
+            <div class="row g-5">
+                <div class="col-md-7 col-lg-8">
+
+                    @using (Html.BeginForm("ChangeDomains", "pfe"))
+                    {
+                        @Html.HiddenFor(h => @Model.ApplicationUser.Id)
+                        ;
+
+
+                        <hr class="my-4">
+
+                        <h4 class="mb-3">Domaines</h4>
+
+                        <div class="my-3">
+
+                            @for (int i = 0; i < @Model.Domaines.Count(); i++)
+                            {
+                                <div class="form-check form-switch">
+                                    @Html.CheckBoxFor(c => @Model.Domaines[i].Selected , new { @class = "form-check-input" })
+                                    @Html.HiddenFor(h => @Model.Domaines[i].Value)
+
+                                    @Html.LabelFor(l => @Model.Domaines[i].Selected, @Model.Domaines[i].Text, new {@class="form-check-label"})
+                                    @Html.HiddenFor(h => @Model.Domaines[i].Text)
+                                </div>
+                            }
+                        </div>
+
+                        <hr class="my-4">
+
+                        <button class="w-100 btn btn-primary btn-lg" type="submit">Save</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
